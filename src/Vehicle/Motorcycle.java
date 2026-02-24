@@ -1,10 +1,16 @@
 package Vehicle;
 
+import java.time.LocalDate;
+
 public class Motorcycle extends AbstractVehicle implements Vehicle {
 
-    @Override
-    public void getId() {
+    public Motorcycle(String id, VehicleType type, LocalDate time) {
+        super(id, type, time);
+    }
 
+    @Override
+    public String  getId() {
+        return id;
     }
 
     @Override

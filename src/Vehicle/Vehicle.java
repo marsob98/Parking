@@ -1,6 +1,6 @@
 package Vehicle;
 
 public interface Vehicle {
-    void getId();
+    String getId();
     VehicleType getType();
 }

@@ -34,4 +34,5 @@ public class Vehicle {
         return hours * vehicleType.getHourlyRate();
 
     }
+
 }

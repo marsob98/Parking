@@ -24,4 +24,18 @@ public class ParkingSpot {
     public Vehicle getVehicle() {
         return vehicle;
     }
+
+    public void occupy(Vehicle vehicle) {
+        this.vehicle = vehicle;
+        occupied = true;
+    }
+
+    public Vehicle free() {
+        Vehicle temp = vehicle;
+        this.vehicle = null;
+        occupied = false;
+        return temp;
+
+    }
+
 }

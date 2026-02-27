@@ -1,6 +1,7 @@
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Vehicle {
     private final String licensePlate;
@@ -33,6 +34,13 @@ public class Vehicle {
         }
         return hours * vehicleType.getHourlyRate();
 
+    }
+
+    public String toString() {
+        return String.format("%s (%s) - wjazd: %s",
+                licensePlate,
+                vehicleType,
+                entryTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }
 
 }

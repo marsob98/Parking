@@ -6,13 +6,13 @@ import java.util.Map;
 
 public class Parking {
 
-    List<ParkingSpot> spots = new ArrayList<>();
+    private List<ParkingSpot> spots = new ArrayList<>();
 
     public Parking(int totalSpots) {
 
-        int smallCount = (int)(totalSpots * 0.4);
-        int mediumCount = (int)(totalSpots * 0.4);
-        int largeCount =  totalSpots - smallCount - mediumCount;
+        int smallCount = (int) (totalSpots * 0.4);
+        int mediumCount = (int) (totalSpots * 0.4);
+        int largeCount = totalSpots - smallCount - mediumCount;
 
         int spotNumber = 1;
 
@@ -31,7 +31,6 @@ public class Parking {
     }
 
 
-
     public boolean parkVehicle(Vehicle vehicle) {
         for (ParkingSpot spot : spots) {
             if (!spot.isOccupied()) {
@@ -43,7 +42,7 @@ public class Parking {
             }
         }
         System.out.println("Brak wolnych miejsc dla " + vehicle.getVehicleType());
-        return  false;
+        return false;
     }
 
     public double exitParking(String licensePlate) {
@@ -53,7 +52,7 @@ public class Parking {
 
                 double cost = vehicle.calculateCost(LocalDateTime.now());
                 System.out.println("Zakończono parkowanie pojazdu: " + vehicle + " do zapłaty: " + cost);
-                return  cost;
+                return cost;
             }
         }
         System.out.println("Nie znaleziono pojazdu: " + licensePlate);
@@ -61,13 +60,11 @@ public class Parking {
     }
 
     public void showOccupiedSpots() {
-        for (int i = 0; i < spots.size(); i++) {
-            if (spots.get(i).getVehicle() == null) {
-                continue;
+        for (ParkingSpot spot : spots) {
+            if (spot.isOccupied()) {
+                System.out.println(spot.getVehicle());
             }
-            System.out.println(spots.get(i).getVehicle());
         }
     }
-
 
 }

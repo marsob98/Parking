@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Parking parking = new Parking(100);
+        Parking parking = new Parking(20);
         Vehicle vehicle = new Vehicle("12345", VehicleType.CAR, LocalDateTime.now());
         Vehicle vehicle2 = new Vehicle("54321", VehicleType.TRUCK, LocalDateTime.now());
         Vehicle vehicle3 = new Vehicle("qwert", VehicleType.MOTORCYCLE, LocalDateTime.now());
@@ -24,6 +24,7 @@ public class Main {
             System.out.println("2. Exit vehicle");
             System.out.println("3. Show Occupied spots");
             System.out.println("4. Show free spots");
+            System.out.println("5. Exit");
 
             System.out.println("Choice: ");
             int choice = scanner.nextInt();
@@ -61,14 +62,24 @@ public class Main {
                     System.out.println("Which car do you want to exit (choose license plate number): ");
                     parking.showOccupiedSpots();
                     String plate = scanner.nextLine();
-
-
-
+                    parking.exitParking(plate);
                     break;
+
                 case 3:
+                    parking.showOccupiedSpots();
                     break;
+
                 case 4:
+                    parking.showFreeSpots();
                     break;
+
+                case 5:
+                    System.out.println("Closing program");
+                    return;
+
+                default:
+                    System.out.println("Wrong choice");
+
 
 
             }

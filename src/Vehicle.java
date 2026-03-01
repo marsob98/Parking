@@ -37,7 +37,7 @@ public class Vehicle {
     }
 
     public String toString() {
-        return String.format("%s (%s) - wjazd: %s",
+        return String.format("%s (%s) - started at %s",
                 licensePlate,
                 vehicleType,
                 entryTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));

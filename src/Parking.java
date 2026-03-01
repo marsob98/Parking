@@ -36,12 +36,12 @@ public class Parking {
             if (!spot.isOccupied()) {
                 if (vehicle.getVehicleType().canParkOn(spot.getSize())) {
                     spot.occupy(vehicle);
-                    System.out.println("Zaparkowano " + vehicle.getLicensePlate() + " na miejscu - " + spot.getSpotNumber());
+                    System.out.println("Vehicle " + vehicle.getLicensePlate() + " stay at no. - " + spot.getSpotNumber());
                     return true;
                 }
             }
         }
-        System.out.println("Brak wolnych miejsc dla " + vehicle.getVehicleType());
+        System.out.println("No free places for this type: " + vehicle.getVehicleType());
         return false;
     }
 
@@ -51,11 +51,11 @@ public class Parking {
                 Vehicle vehicle = spot.free();
 
                 double cost = vehicle.calculateCost(LocalDateTime.now());
-                System.out.println("Zakończono parkowanie pojazdu: " + vehicle + " do zapłaty: " + cost);
+                System.out.println("Your vehicle is here: " + vehicle + " cost: " + cost);
                 return cost;
             }
         }
-        System.out.println("Nie znaleziono pojazdu: " + licensePlate);
+        System.out.println("Can't find vehicle: " + licensePlate);
         return 0;
     }
 
@@ -65,6 +65,31 @@ public class Parking {
                 System.out.println(spot.getVehicle());
             }
         }
+    }
+
+    public void showFreeSpots() {
+        System.out.println("=== FREE SPOTS ===");
+        int count = 0;
+        for (ParkingSpot spot : spots) {
+            if (!spot.isOccupied()) {
+                System.out.printf("Place #%d (%s)%n",
+                        spot.getSpotNumber(),
+                        spot.getSize());
+                count++;
+            }
+        }
+        if (count == 0) {
+            System.out.println("Every occupied");
+        }
+    }
+
+    public boolean isVehicleParked(String licensePlate) {
+        for (ParkingSpot spot : spots) {
+            if (spot.getVehicle().getLicensePlate().equals(licensePlate)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
